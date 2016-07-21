@@ -1,0 +1,27 @@
+Score=function(data){
+  numrow=nrow(data)
+  numcol=ncol(data)
+  
+  Solution=c("0","D","B","D","C","D","A","B","A","D","C","B","D","B","C","A","C","C","B","B","D","D","A","D","E","B","B","C","B","C")
+  
+  Correct=numeric(numrow)
+  
+  for(i in 1:numrow){
+    
+    
+    count=0 #only care about counting the row not the column totals and this does that, the count being 0 here is important so that it resets for each student aka each i#
+    for(j in 2:numcol){ #starting at 2 because 1 is the ID#
+      
+      if(Solution[j]==data[i,j]){#compares student i answer for question j to what the solution thing says for question j#
+        count=count+1 #takes old count and adds 1#
+      }else{
+        count=count #if it doesnt match dont do shit#
+      }
+    }
+  Correct[i]=count
+  }
+data2=data.frame(data[,1],Correct)
+colnames(data2)=c("ID","Raw Score")
+
+return(data2)
+}
